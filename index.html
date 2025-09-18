@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="login-page" class="page">
+        <h1>🔑 Welcome</h1>
+        <input type="text" id="username" placeholder="Enter username">
+        <input type="password" id="password" placeholder="Enter password">
+        <button onclick="login()">Login</button>
+        <button onclick="createAccount()">Create Account</button>
+        <p id="login-msg"></p>
+    </div>
+
+    <!-- Main Budget Page -->
+    <div id="budget-page" class="page hidden">
+        <h1>💖 Budget Calculator</h1>
+        
+        <!-- Monthly Income -->
+        <div class="section">
+            <h2>💵 Monthly Income</h2>
+            <input type="number" id="income" placeholder="Enter your income">
+        </div>
+
+        <!-- Expenses -->
+        <div class="section">
+            <h2>💸 Expenses</h2>
+            <div id="expenses-list">
+                <div class="expense-item">
+                    <input type="text" value="Food" readonly>
+                    <input type="number" placeholder="Amount">
+                </div>
+                <div class="expense-item">
+                    <input type="text" value="Entertainment" readonly>
+                    <input type="number" placeholder="Amount">
+                </div>
+            </div>
+            <button onclick="addExpense()">+ Add Expense</button>
+        </div>
+
+        <!-- Goal Tracker -->
+        <div class="section">
+            <h2>🎯 Savings Goal</h2>
+            <input type="number" id="goal" placeholder="Enter savings goal">
+        </div>
+
+        <!-- Results -->
+        <div class="section">
+            <button onclick="calculateBudget()">Calculate</button>
+            <div class="result" id="result"></div>
+        </div>
+    </div>
+
+    <script>
+        // Simple Login (Frontend Only)
+        let users = {};
+
+        function login() {
+            const user = document.getElementById("username").value;
+            const pass = document.getElementById("password").value;
+            if (users[user] && users[user] === pass) {
+                document.getElementById("login-msg").innerText = "✅ Login successful!";
+                document.getElementById("login-page").classList.add("hidden");
+                document.getElementById("budget-page").classList.remove("hidden");
+            } else {
+                document.getElementById("login-msg").innerText = "❌ Invalid username or password!";
+            }
+        }
+
+        function createAccount() {
+            const user = document.getElementById("username").value;
+            const pass = document.getElementById("password").value;
+            if (user && pass) {
+                users[user] = pass;
+                document.getElementById("login-msg").innerText = "✅ Account created! Please log in.";
+            } else {
+                document.getElementById("login-msg").innerText = "⚠️ Enter username and password!";
+            }
+        }
+
+        // Add new expense category
+        function addExpense() {
+            const container = document.getElementById("expenses-list");
+            const div = document.createElement("div");
+            div.classList.add("expense-item");
+            div.innerHTML = `
+                <input type="text" placeholder="Category">
+                <input type="number" placeholder="Amount">
+            `;
+            container.appendChild(div);
+        }
+
+        // Calculate Budget
+        function calculateBudget() {
+            const income = parseFloat(document.getElementById("income").value) || 0;
+            const goal = parseFloat(document.getElementById("goal").value) || 0;
+
+            let totalExpenses = 0;
+            const expenses = document.querySelectorAll("#expenses-list .expense-item input[type='number']");
+            expenses.forEach(exp => {
+                totalExpenses += parseFloat(exp.value) || 0;
+            });
+
+            const balance = income - totalExpenses;
+            let msg = `💵 Income: $${income.toFixed(2)}\n💸 Expenses: $${totalExpenses.toFixed(2)}\n💰 Balance: $${balance.toFixed(2)}`;
+
+            if (goal > 0) {
+                if (balance >= goal) {
+                    msg += `\n🎉 You reached your goal of $${goal}!`;
+                } else {
+                    msg += `\n📉 You still need $${(goal - balance).toFixed(2)} to reach your goal.`;
+                }
+            }
+
+            document.getElementById("result").innerText = msg;
+        }
+    </script>
+</body>
+</html>
+<button onclick="logout()">🚪 Logout</button>
+<script src="script.js"></script>
+<link rel="stylesheet" href="style.css">
