@@ -1,0 +1,111 @@
+/* General Angel Theme */
+body {
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(to bottom, #e3f2fd, #ffffff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Page containers */
+.page {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 30px rgba(135, 206, 250, 0.6);
+    width: 380px;
+    text-align: center;
+    transition: 0.4s ease;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Titles */
+h1 {
+    color: #4a90e2;
+    margin-bottom: 20px;
+    font-size: 26px;
+    text-shadow: 1px 1px 5px rgba(173, 216, 230, 0.8);
+}
+
+h2 {
+    color: #5c6bc0;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="password"],
+input[type="number"] {
+    width: 85%;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 12px;
+    border: 1px solid #a7c7e7;
+    text-align: center;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background-color: #f9fbff;
+}
+
+input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 8px rgba(74, 144, 226, 0.6);
+}
+
+/* Buttons */
+button {
+    padding: 12px 25px;
+    margin: 10px 5px;
+    background: linear-gradient(145deg, #a7c7e7, #4a90e2);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(135, 206, 250, 0.6);
+}
+
+button:hover {
+    background: linear-gradient(145deg, #4a90e2, #357ab8);
+    transform: scale(1.05);
+}
+
+/* Expense items */
+.expense-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.expense-item input[type="text"] {
+    width: 55%;
+    background: #eef5ff;
+    border: 1px solid #a7c7e7;
+    font-weight: bold;
+}
+
+.expense-item input[type="number"] {
+    width: 40%;
+}
+
+/* Result section */
+.result {
+    margin-top: 20px;
+    padding: 12px;
+    background: #f1f8ff;
+    border: 1px solid #a7c7e7;
+    border-radius: 12px;
+    font-size: 16px;
+    color: #2e7d32;
+    font-weight: bold;
+    white-space: pre-line; /* Keep line breaks */
+}
